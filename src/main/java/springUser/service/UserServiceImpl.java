@@ -24,10 +24,11 @@ public class UserServiceImpl implements UserService, UserDetailsService  {
 
     }
     @Transactional
-    public void addUser(User user) throws SQLException {
+    public User addUser(User user) throws SQLException {
         String password = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(password);
         userHibernateDAO.addUser(user);
+        return user;
     }
 
     @Transactional
@@ -41,10 +42,16 @@ public class UserServiceImpl implements UserService, UserDetailsService  {
     }
 
     @Transactional
-    public void updateUser(User user) {
-//        String password = new BCryptPasswordEncoder().encode(user.getPassword());
-//        user.setPassword(password);
+    public User updateUser(User user) throws SQLException {
+        String password = new BCryptPasswordEncoder().encode(user.getPassword());
+        user.setPassword(password);
+//        if (user.getPassword().equals(userHibernateDAO.getPasswordByName(user.getName()))) {
+//            user.setPassword(user.getPassword());
+//        } else {
+//            user.setPassword(password);
+//        }
         userHibernateDAO.updateUser(user);
+        return user;
     }
 
     @Transactional
@@ -57,10 +64,11 @@ public class UserServiceImpl implements UserService, UserDetailsService  {
         return userHibernateDAO.getUserById(id);
     }
 
-    @Transactional
+    @Override
     public String getPasswordByName(String name) {
-        return userHibernateDAO.getPasswordByName(name);
+        return null;
     }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

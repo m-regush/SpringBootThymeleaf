@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface UserService {
 
-    void addUser(User user) throws SQLException;
+    User addUser(User user) throws SQLException;
     List<User> getAllUsers() throws SQLException;
     void deleteUser(Long id);
-    void updateUser(User user);
+    User updateUser(User user) throws SQLException;
     User getUserByName(String name) throws SQLException;
     User getUserById(Long id) throws SQLException;
     String getPasswordByName(String name);

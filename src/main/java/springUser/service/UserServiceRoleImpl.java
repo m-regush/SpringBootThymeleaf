@@ -17,6 +17,7 @@ public class UserServiceRoleImpl implements UserServiceRole {
 
     }
 
+
     @Autowired
     public UserServiceRoleImpl(UserRoleDAO userRoleDAO) {
         this.userRoleDAO = userRoleDAO;

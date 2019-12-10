@@ -13,13 +13,13 @@ public interface UserDAO {
 
     void deleteUser(Long id);
 
-    void updateUser(User user);
+    void updateUser(User user) throws SQLException;
 
     User getUserByName(String name) throws SQLException;
 
     User getUserById(Long id) throws SQLException;
 
-    String getPasswordByName(String name);
+//    String getPasswordByName(String name);
 
 
 }
